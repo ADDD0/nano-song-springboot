@@ -1,0 +1,23 @@
+package org.nano.song.domain.repository;
+
+import org.nano.song.domain.Constant;
+import org.nano.song.domain.repository.entity.CoverSinger;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import javax.persistence.Table;
+import java.util.ArrayList;
+import java.util.Optional;
+
+@Table(name = Constant.TABLE_COVER_SINGER)
+@Repository
+public interface CoverSingerRepository extends JpaRepository<CoverSinger, Integer> {
+
+    /**
+     * 根据 songId 查找所有翻唱（精确查询）
+     *
+     * @param songId 歌曲id
+     * @return 翻唱歌手列表
+     */
+    Optional<ArrayList<CoverSinger>> findAllBySongId(Integer songId);
+}
