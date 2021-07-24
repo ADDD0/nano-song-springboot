@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `song` (
   `SONG_NAME` varchar(255) COLLATE utf8_bin NOT NULL COMMENT '歌名',
   `PATH` varchar(255) COLLATE utf8_bin NOT NULL COMMENT '路径',
   `SONG_COLLECTION_ID` int(10) unsigned NOT NULL COMMENT '歌曲集合id',
-  `PERFORMANCE_DATE` datetime NOT NULL COMMENT '演唱日期',
+  `PERFORMANCE_DATE` datetime NOT NULL COMMENT '弹唱日期',
   `CREATED_DATE` datetime NOT NULL COMMENT '创建时间',
   `LAST_MODIFIED_DATE` datetime NOT NULL COMMENT '最后修改时间',
   `LOGICAL_DELETE_FLAG` tinyint(1) NOT NULL DEFAULT '0' COMMENT '逻辑删除标志',

@@ -39,7 +39,7 @@ public class OriginalSingerController {
 
     @Data
     public static class BindOriginalSingerRequest {
-        // 歌手名
+        // 歌手姓名
         @NotBlank(message = Constant.ERR_MSG_SINGER_NAME_EMPTY)
         private String singerName;
         // 歌曲标题

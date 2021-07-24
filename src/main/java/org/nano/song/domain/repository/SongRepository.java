@@ -26,7 +26,7 @@ public interface SongRepository extends JpaRepository<Song, Integer> {
     /**
      * 根据 performanceDate 查找歌曲（精确查询）
      *
-     * @param performanceDate   演唱日期
+     * @param performanceDate   弹唱日期
      * @param logicalDeleteFlag 逻辑删除标志
      * @return 歌曲列表
      */

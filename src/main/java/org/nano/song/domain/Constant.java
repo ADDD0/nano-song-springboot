@@ -74,16 +74,16 @@ public class Constant {
      **/
     public static final String ERR_MSG_SONG_COLLECTION_ID_EMPTY = "歌曲集合id不能为空";
     public static final String ERR_MSG_COVER_SINGER_EMPTY = "翻唱歌手不能为空";
-    public static final String ERR_MSG_PERFORMANCE_DATE_EMPTY = "演唱日期未选择";
+    public static final String ERR_MSG_PERFORMANCE_DATE_EMPTY = "弹唱日期未选择";
     public static final String ERR_MSG_DATE_FOMAT_WRONG = "日期格式有误";
     public static final String ERR_MSG_FILE_CONTENT_EMPTY = "文件内容不能为空";
     public static final String ERR_MSG_FILE_NOT_UPLOAD = "文件未上传";
-    public static final String ERR_MSG_SINGER_NAME_EMPTY = "歌手名不能为空";
+    public static final String ERR_MSG_SINGER_NAME_EMPTY = "歌手姓名不能为空";
     public static final String ERR_MSG_SONG_TITLE_EMPTY = "歌名不能为空";
     public static final String ERR_MSG_ORIGINAL_SINGER_EMPTY = "原唱歌手不能为空";
 
     /**
      * 静态资源保存根路径
      **/
-    public static final String RESOURCES_STATIC_ROOT_PATH = "./nano-song-springboot/src/main/resources/static/";
+    public static final String RESOURCES_STATIC_ROOT_PATH = "../nano-song-springboot/src/main/resources/static/";
 }

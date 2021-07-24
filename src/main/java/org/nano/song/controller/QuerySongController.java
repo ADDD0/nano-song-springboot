@@ -59,7 +59,7 @@ public class QuerySongController {
 
     @Data
     public static class QueryPerformanceDateRequest {
-        // 演唱日期
+        // 弹唱日期
         @NotBlank(message = Constant.ERR_MSG_PERFORMANCE_DATE_EMPTY)
         @Pattern(regexp = "^\\d{4}/\\d{1,2}/\\d{1,2}$", message = Constant.ERR_MSG_DATE_FOMAT_WRONG)
         private String performanceDate;
@@ -76,7 +76,7 @@ public class QuerySongController {
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
             parsePerformanceDate = simpleDateFormat.parse(performanceDate);
         } catch (ParseException e) {
-            // 格式化日期失败 报400
+            // 格式化弹唱日期失败 报400
             return new ResponseEntity<>(Constant.ERR_MSG_DATE_FOMAT_WRONG, HttpStatus.BAD_REQUEST);
         }
         // 查找歌曲
@@ -107,7 +107,7 @@ public class QuerySongController {
             queryResponseResourceArrayList.add(responseResource);
         }
         QuerySongResponse response = new QuerySongResponse();
-        // 歌曲查询结果按演唱日期排序
+        // 歌曲查询结果按弹唱日期排序
         queryResponseResourceArrayList.sort(Comparator.comparing(o -> o.getSong().getPerformanceDate()));
 
         response.setQueryResponseResourceArrayList(queryResponseResourceArrayList);

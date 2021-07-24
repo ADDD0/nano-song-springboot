@@ -63,7 +63,7 @@ public class SongController {
         // 歌曲文件内容
         @NotBlank(message = Constant.ERR_MSG_FILE_CONTENT_EMPTY)
         private String songFileContent;
-        // 所属歌曲集合
+        // 歌曲标题 用于查找所属歌曲集合
         @NotBlank(message = Constant.ERR_MSG_SONG_TITLE_EMPTY)
         private String songTitle;
     }
@@ -92,7 +92,7 @@ public class SongController {
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
             song.setPerformanceDate(simpleDateFormat.parse(performanceDate));
         } catch (ParseException e) {
-            // 格式化日期失败 报400
+            // 格式化弹唱日期失败 报400
             return new ResponseEntity<>(Constant.ERR_MSG_DATE_FOMAT_WRONG, HttpStatus.BAD_REQUEST);
         }
         song.setPath(performanceDate + "/" + fileName);

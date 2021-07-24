@@ -26,7 +26,7 @@ public class Song extends AuditEntity {
     private String path;
     // 歌曲集合id
     private Integer songCollectionId;
-    // 演唱日期
+    // 弹唱日期
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private Date performanceDate;
     // 逻辑删除标志

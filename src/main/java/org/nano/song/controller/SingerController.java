@@ -28,7 +28,7 @@ public class SingerController {
 
     @Data
     public static class AddSingerRequest {
-        // 歌手名
+        // 歌手姓名
         @NotBlank(message = Constant.ERR_MSG_SINGER_NAME_EMPTY)
         private String singerName;
     }
