@@ -1,8 +1,8 @@
-package org.nano.song.controller.handler;
+package org.nano.song.handler;
 
 import lombok.extern.slf4j.Slf4j;
 import org.nano.song.domain.Constant;
-import org.nano.song.controller.handler.exception.BindRelationExistException;
+import org.nano.song.handler.exception.BindRelationExistException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;

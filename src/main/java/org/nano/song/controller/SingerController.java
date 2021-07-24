@@ -4,7 +4,7 @@ import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.nano.song.domain.Constant;
 import org.nano.song.domain.repository.entity.Singer;
-import org.nano.song.controller.handler.exception.ResourceExistException;
+import org.nano.song.handler.exception.ResourceExistException;
 import org.nano.song.domain.repository.SingerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

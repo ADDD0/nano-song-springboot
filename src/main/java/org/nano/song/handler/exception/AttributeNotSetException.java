@@ -1,4 +1,4 @@
-package org.nano.song.controller.handler.exception;
+package org.nano.song.handler.exception;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

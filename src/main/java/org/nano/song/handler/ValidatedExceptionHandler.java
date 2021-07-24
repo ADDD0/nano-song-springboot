@@ -1,4 +1,4 @@
-package org.nano.song.controller.handler;
+package org.nano.song.handler;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

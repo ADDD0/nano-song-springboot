@@ -2,7 +2,7 @@ package org.nano.song.controller;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
-import org.nano.song.controller.handler.exception.ResourceNotFoundException;
+import org.nano.song.handler.exception.ResourceNotFoundException;
 import org.nano.song.domain.Constant;
 import org.nano.song.domain.repository.CoverSingerRepository;
 import org.nano.song.domain.repository.SingerRepository;
@@ -157,7 +157,7 @@ public class QuerySongController {
             queryResponseResourceArrayList.add(responseResource);
         }
         QuerySongResponse response = new QuerySongResponse();
-        // 歌曲查询结果按演唱日期排序
+        // 歌曲查询结果按弹唱日期排序
         queryResponseResourceArrayList.sort(Comparator.comparing(o -> o.getSong().getPerformanceDate()));
 
         response.setQueryResponseResourceArrayList(queryResponseResourceArrayList);

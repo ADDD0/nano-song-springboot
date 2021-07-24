@@ -2,7 +2,7 @@ package org.nano.song.controller;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
-import org.nano.song.controller.handler.exception.ResourceNotFoundException;
+import org.nano.song.handler.exception.ResourceNotFoundException;
 import org.nano.song.domain.Constant;
 import org.nano.song.domain.repository.CoverSingerRepository;
 import org.nano.song.domain.repository.SingerRepository;
