@@ -2,6 +2,29 @@ package org.nano.song.domain;
 
 public class Enumerate {
 
+    // 逻辑删除标记
+    public enum DELETE_FLAG {
+
+        DELETED(true, "已删除"),
+        UNDELETED(false, "未删除");
+
+        private final boolean code;
+        private final String value;
+
+        DELETE_FLAG(boolean code, String value) {
+            this.code = code;
+            this.value = value;
+        }
+
+        public boolean getCode() {
+            return code;
+        }
+
+        public String getValue() {
+            return value;
+        }
+    }
+
     // 完成度
     public enum COMPLETION {
 
