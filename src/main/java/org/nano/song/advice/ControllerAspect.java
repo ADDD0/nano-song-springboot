@@ -21,7 +21,7 @@ public class ControllerAspect {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
-    @Pointcut("execution(public * org.nano.song.controller..*.*(..))")
+    @Pointcut("execution(public * org.nano.song.controller..*.*(..)) && !execution(public * org.nano.song.controller.SongController.importSong(..))")
     public void log() {
     }
 
@@ -47,8 +47,8 @@ public class ControllerAspect {
         ResponseEntity<?> responseEntity = ((ResponseEntity) object);
 
         String stringBuilder = "\n" +
-                "Status Code: " + responseEntity.getStatusCode() + "\n" +
-                "Response:    " + responseEntity.getBody();
+                "Status Code:        " + responseEntity.getStatusCode() + "\n" +
+                "Response:           " + responseEntity.getBody();
         logger.info(stringBuilder);
     }
 }
