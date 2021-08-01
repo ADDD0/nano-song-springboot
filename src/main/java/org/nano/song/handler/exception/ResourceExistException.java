@@ -3,6 +3,9 @@ package org.nano.song.handler.exception;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+/**
+ * 查找数据已存在
+ */
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class ResourceExistException extends Exception {

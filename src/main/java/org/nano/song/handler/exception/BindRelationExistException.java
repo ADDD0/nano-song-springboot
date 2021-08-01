@@ -3,6 +3,9 @@ package org.nano.song.handler.exception;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+/**
+ * 绑定关系已存在
+ */
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class BindRelationExistException extends Exception {

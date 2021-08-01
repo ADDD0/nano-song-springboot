@@ -32,7 +32,7 @@ public interface SingerRepository extends JpaRepository<Singer, Integer> {
     Optional<Singer> findBySingerNameAndLogicalDeleteFlag(String singerName, Boolean logicalDeleteFlag);
 
     /**
-     * 根据 singerName 查找歌手（模糊查询）
+     * 根据 singerName 查找所有歌手（模糊查询）
      *
      * @param singerName        歌手姓名
      * @param logicalDeleteFlag 逻辑删除标志

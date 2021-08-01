@@ -32,7 +32,7 @@ public interface SongCollectionRepository extends JpaRepository<SongCollection, 
     Optional<SongCollection> findBySongTitleAndLogicalDeleteFlag(String songTitle, Boolean logicalDeleteFlag);
 
     /**
-     * 根据 songTitle 查找歌曲集合（模糊查询）
+     * 根据 songTitle 查找所有歌曲集合（模糊查询）
      *
      * @param songTitle         歌曲标题
      * @param logicalDeleteFlag 逻辑删除标志

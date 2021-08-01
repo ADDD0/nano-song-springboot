@@ -24,7 +24,7 @@ public interface SongRepository extends JpaRepository<Song, Integer> {
     Optional<Song> findBySongIdAndLogicalDeleteFlag(Integer songId, Boolean logicalDeleteFlag);
 
     /**
-     * 根据 performanceDate 查找歌曲（精确查询）
+     * 根据 performanceDate 查找所有歌曲（精确查询）
      *
      * @param performanceDate   弹唱日期
      * @param logicalDeleteFlag 逻辑删除标志
@@ -33,7 +33,7 @@ public interface SongRepository extends JpaRepository<Song, Integer> {
     Optional<ArrayList<Song>> findAllByPerformanceDateAndLogicalDeleteFlag(Date performanceDate, Boolean logicalDeleteFlag);
 
     /**
-     * 根据 songCollectionId 查找歌曲（精确查询）
+     * 根据 songCollectionId 查找所有歌曲（精确查询）
      *
      * @param songCollectionId  歌曲集合id
      * @param logicalDeleteFlag 逻辑删除标志

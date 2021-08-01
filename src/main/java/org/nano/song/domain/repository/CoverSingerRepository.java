@@ -14,7 +14,16 @@ import java.util.Optional;
 public interface CoverSingerRepository extends JpaRepository<CoverSinger, Integer> {
 
     /**
-     * 根据 songId 查找所有翻唱（精确查询）
+     * 根据 songId 和 singerId 查找翻唱歌手（精确查询）
+     *
+     * @param songId   歌曲id
+     * @param singerId 歌手id
+     * @return 翻唱歌手
+     */
+    Optional<CoverSinger> findBySongIdAndSingerId(Integer songId, Integer singerId);
+
+    /**
+     * 根据 songId 查找所有翻唱歌手（精确查询）
      *
      * @param songId 歌曲id
      * @return 翻唱歌手列表

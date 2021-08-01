@@ -10,8 +10,8 @@ public class Enumerate {
         NYA_SEGMENT("03", "nya一段"),
         NYANO("04", "nyano出没");
 
-        private String code;
-        private String value;
+        private final String code;
+        private final String value;
 
         COMPLETION(String code, String value) {
             this.code = code;
@@ -35,8 +35,8 @@ public class Enumerate {
         KALIMBA("03", "吉他"),
         DRUM("04", "鼓");
 
-        private String code;
-        private String value;
+        private final String code;
+        private final String value;
 
         INSTRUMENT(String code, String value) {
             this.code = code;
@@ -59,8 +59,8 @@ public class Enumerate {
         OYASUMI("02", "晚安弹唱"),
         SONG("03", "歌回");
 
-        private String code;
-        private String value;
+        private final String code;
+        private final String value;
 
         TYPE(String code, String value) {
             this.code = code;
@@ -85,8 +85,8 @@ public class Enumerate {
         FANBOX("04", "fanbox"),
         FANTIA("05", "fantia");
 
-        private String code;
-        private String value;
+        private final String code;
+        private final String value;
 
         SCENE(String code, String value) {
             this.code = code;

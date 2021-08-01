@@ -25,7 +25,7 @@ public class Constant {
      * 请求操作
      **/
     public static final String OPERATION_ADD = "/add";
-    public static final String OPERATION_BIND = "/bind";
+    public static final String OPERATION_RELATE = "/relate";
     public static final String OPERATION_DELETE = "/delete";
     public static final String OPERATION_IMPORT = "/import";
     public static final String OPERATION_QUERY = "/query";
@@ -47,8 +47,8 @@ public class Constant {
      * 描述文言
      **/
     public static final String MSG_ADD_SUCCESS = "新增成功";
-    public static final String MSG_BIND = "已关联";
-    public static final String MSG_BIND_SUCCESS = "关联成功";
+    public static final String MSG_BIND = "已绑定";
+    public static final String MSG_RELATE_SUCCESS = "关联成功";
     public static final String MSG_DELETE_SUCCESS = "删除成功";
     public static final String MSG_EXIST = "已存在";
     public static final String MSG_IMPORT_SUCCESS = "导入成功";
@@ -66,7 +66,7 @@ public class Constant {
      * 前端展示文言
      **/
     public static final String SHOW_SINGER = "歌手";
-    public static final String SHOW_SONG = "单曲";
+    public static final String SHOW_SONG = "歌曲";
     public static final String SHOW_SONG_COLLECTION = "歌曲集合";
 
     /**

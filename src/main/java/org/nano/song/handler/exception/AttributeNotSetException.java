@@ -3,6 +3,9 @@ package org.nano.song.handler.exception;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+/**
+ * 属性未设置
+ */
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class AttributeNotSetException extends Exception {
