@@ -89,7 +89,7 @@ public class QuerySongCollectionServiceImpl implements QuerySongCollectionServic
         ArrayList<Integer> songCollectionIdArrayList = new ArrayList<>();
         for (Singer singer : querySingerArrayList) {
             QueryOriginalSingerBean queryOriginalSingerBean = new QueryOriginalSingerBean();
-            queryOriginalSingerBean.setSongCollectionId(singer.getSingerId());
+            queryOriginalSingerBean.setSingerId(singer.getSingerId());
             // 查询部分原唱歌手
             ReturnOriginalSingerBean returnOriginalSingerBean = queryOriginalSingerService.queryOriginalSinger(queryOriginalSingerBean);
             ArrayList<OriginalSinger> partOriginalSingerArrayList = returnOriginalSingerBean.getOriginalSingerArrayList();
