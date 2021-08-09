@@ -29,4 +29,12 @@ public interface CoverSingerRepository extends JpaRepository<CoverSinger, Intege
      * @return 翻唱歌手列表
      */
     Optional<ArrayList<CoverSinger>> findAllBySongId(Integer songId);
+
+    /**
+     * 根据 singerId 查找所有翻唱歌手（精确查询）
+     *
+     * @param singerId 歌手id
+     * @return 翻唱歌手列表
+     */
+    Optional<ArrayList<CoverSinger>> findAllBySingerId(Integer singerId);
 }
