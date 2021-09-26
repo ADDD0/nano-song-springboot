@@ -5,7 +5,7 @@ import org.nano.song.handler.exception.ResourceNotFoundException;
 import org.nano.song.info.bean.songCollection.QuerySongCollectionBean;
 import org.nano.song.info.request.songCollection.QuerySongCollectionBySingerNameRequest;
 import org.nano.song.info.request.songCollection.QuerySongCollectionBySongTitleRequest;
-import org.nano.song.info.response.songCollection.QuerySongCollectionResponse;
+import org.nano.song.info.response.songCollection.QuerySongCollectionApiResponse;
 import org.nano.song.service.songCollection.QuerySongCollectionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,7 +25,7 @@ public class QuerySongCollectionController {
 
     @PostMapping(Constant.QUERY_CONTENT_SONG_TITLE)
     @ResponseBody
-    public ResponseEntity<QuerySongCollectionResponse> query(@RequestBody @Validated @NotEmpty QuerySongCollectionBySongTitleRequest request)
+    public ResponseEntity<QuerySongCollectionApiResponse> query(@RequestBody @Validated @NotEmpty QuerySongCollectionBySongTitleRequest request)
             throws ResourceNotFoundException {
 
         QuerySongCollectionBean querySongCollectionBean = new QuerySongCollectionBean();
@@ -37,7 +37,7 @@ public class QuerySongCollectionController {
 
     @PostMapping(Constant.QUERY_CONTENT_SINGER_NAME)
     @ResponseBody
-    public ResponseEntity<QuerySongCollectionResponse> query(@RequestBody @Validated @NotEmpty QuerySongCollectionBySingerNameRequest request)
+    public ResponseEntity<QuerySongCollectionApiResponse> query(@RequestBody @Validated @NotEmpty QuerySongCollectionBySingerNameRequest request)
             throws ResourceNotFoundException {
 
         QuerySongCollectionBean querySongCollectionBean = new QuerySongCollectionBean();

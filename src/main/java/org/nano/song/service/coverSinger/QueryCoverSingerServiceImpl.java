@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 @Service
 @Transactional
@@ -24,30 +26,30 @@ public class QueryCoverSingerServiceImpl implements QueryCoverSingerService {
         Integer singerId = queryCoverSingerBean.getSingerId();
 
         ReturnCoverSingerBean returnCoverSingerBean = new ReturnCoverSingerBean();
-        ArrayList<CoverSinger> coverSingerArrayList = new ArrayList<>();
+        List<CoverSinger> coverSingerList = new ArrayList<>();
         // 内部调用 不验证数据有效性
         if (songId != null && singerId == null) {
-            coverSingerArrayList = queryCoverSingerBySongId(songId);
+            coverSingerList = queryCoverSingerBySongId(songId);
         } else if (songId == null && singerId != null) {
-            coverSingerArrayList = queryCoverSingerBySingerId(singerId);
+            coverSingerList = queryCoverSingerBySingerId(singerId);
         } else {
-            coverSingerArrayList.add(queryCoverSingerBySongIdAndSingerId(songId, singerId));
+            coverSingerList.add(queryCoverSingerBySongIdAndSingerId(songId, singerId));
         }
-        returnCoverSingerBean.setCoverSingerArrayList(coverSingerArrayList);
+        returnCoverSingerBean.setCoverSingerList(coverSingerList);
 
         return returnCoverSingerBean;
     }
 
-    private ArrayList<CoverSinger> queryCoverSingerBySongId(Integer songId) {
+    private List<CoverSinger> queryCoverSingerBySongId(Integer songId) {
 
         // 通过歌曲id查找所有翻唱歌手
-        return coverSingerRepository.findAllBySongId(songId).orElse(new ArrayList<>());
+        return coverSingerRepository.findAllBySongId(songId).orElse(Collections.emptyList());
     }
 
-    private ArrayList<CoverSinger> queryCoverSingerBySingerId(Integer singerId) {
+    private List<CoverSinger> queryCoverSingerBySingerId(Integer singerId) {
 
         // 通过歌手id查找所有翻唱歌手
-        return coverSingerRepository.findAllBySingerId(singerId).orElse(new ArrayList<>());
+        return coverSingerRepository.findAllBySingerId(singerId).orElse(Collections.emptyList());
     }
 
     private CoverSinger queryCoverSingerBySongIdAndSingerId(Integer songId, Integer singerId) {

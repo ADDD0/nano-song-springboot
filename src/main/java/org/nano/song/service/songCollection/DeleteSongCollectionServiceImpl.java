@@ -16,7 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 @Service
 @Transactional
@@ -43,10 +44,10 @@ public class DeleteSongCollectionServiceImpl implements DeleteSongCollectionServ
                 .orElseThrow(() -> new ResourceNotFoundException(Constant.SHOW_SONG_COLLECTION, "id=" + songCollectionId));
 
         // 通过歌曲集合id查找所有歌曲
-        ArrayList<Song> songArrayList = songRepository.findAllBySongCollectionIdAndLogicalDeleteFlag(songCollection.getSongCollectionId(), DELETE_FLAG.UNDELETED.getCode())
-                .orElse(new ArrayList<>());
+        List<Song> songList = songRepository.findAllBySongCollectionIdAndLogicalDeleteFlag(songCollection.getSongCollectionId(), DELETE_FLAG.UNDELETED.getCode())
+                .orElse(Collections.emptyList());
         // 删除该歌曲集合下的所有歌曲
-        for (Song song : songArrayList) {
+        for (Song song : songList) {
             DeleteSongBean deleteSongBean = new DeleteSongBean();
             deleteSongBean.setSongId(song.getSongId());
             // 删除歌曲

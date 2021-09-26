@@ -6,8 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.Table;
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @Table(name = Constant.TABLE_SONG)
@@ -30,7 +30,7 @@ public interface SongRepository extends JpaRepository<Song, Integer> {
      * @param logicalDeleteFlag 逻辑删除标志
      * @return 歌曲列表
      */
-    Optional<ArrayList<Song>> findAllByPerformanceDateAndLogicalDeleteFlag(Date performanceDate, Boolean logicalDeleteFlag);
+    Optional<List<Song>> findAllByPerformanceDateAndLogicalDeleteFlag(Date performanceDate, Boolean logicalDeleteFlag);
 
     /**
      * 根据 songCollectionId 查找所有歌曲（精确查询）
@@ -39,5 +39,5 @@ public interface SongRepository extends JpaRepository<Song, Integer> {
      * @param logicalDeleteFlag 逻辑删除标志
      * @return 歌曲列表
      */
-    Optional<ArrayList<Song>> findAllBySongCollectionIdAndLogicalDeleteFlag(Integer songCollectionId, Boolean logicalDeleteFlag);
+    Optional<List<Song>> findAllBySongCollectionIdAndLogicalDeleteFlag(Integer songCollectionId, Boolean logicalDeleteFlag);
 }

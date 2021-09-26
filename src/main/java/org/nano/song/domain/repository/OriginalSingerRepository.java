@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.Table;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Table(name = Constant.TABLE_ORIGINAL_SINGER)
@@ -28,7 +28,7 @@ public interface OriginalSingerRepository extends JpaRepository<OriginalSinger, 
      * @param songCollectionId 歌曲集合id
      * @return 原唱歌手列表
      */
-    Optional<ArrayList<OriginalSinger>> findAllBySongCollectionId(Integer songCollectionId);
+    Optional<List<OriginalSinger>> findAllBySongCollectionId(Integer songCollectionId);
 
     /**
      * 根据 singerId 查找所有原唱歌手（精确查询）
@@ -36,5 +36,5 @@ public interface OriginalSingerRepository extends JpaRepository<OriginalSinger, 
      * @param singerId 歌手id
      * @return 原唱歌手列表
      */
-    Optional<ArrayList<OriginalSinger>> findAllBySingerId(Integer singerId);
+    Optional<List<OriginalSinger>> findAllBySingerId(Integer singerId);
 }

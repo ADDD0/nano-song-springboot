@@ -11,7 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 @Service
 @Transactional
@@ -28,10 +29,10 @@ public class UnbindOriginalSingerServiceImpl implements UnbindOriginalSingerServ
 
         int songCollectionId = unbindOriginalSingerBean.getSongCollectionId();
         // 通过歌曲集合id查找所有原唱歌手
-        ArrayList<OriginalSinger> originalSingerArrayList = originalSingerRepository.findAllBySongCollectionId(songCollectionId)
-                .orElse(new ArrayList<>());
+        List<OriginalSinger> originalSingerList = originalSingerRepository.findAllBySongCollectionId(songCollectionId)
+                .orElse(Collections.emptyList());
 
-        for (OriginalSinger originalSinger : originalSingerArrayList) {
+        for (OriginalSinger originalSinger : originalSingerList) {
             // 通过歌手id查找歌手 若不存在 报400
             singerRepository.findBySingerIdAndLogicalDeleteFlag(originalSinger.getSingerId(), DELETE_FLAG.UNDELETED.getCode())
                     .orElseThrow(() -> new ResourceNotFoundException(Constant.SHOW_SINGER, "id=" + originalSinger.getSingerId()));

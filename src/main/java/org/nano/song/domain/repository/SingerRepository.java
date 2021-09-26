@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.Table;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Table(name = Constant.TABLE_SINGER)
@@ -38,5 +38,5 @@ public interface SingerRepository extends JpaRepository<Singer, Integer> {
      * @param logicalDeleteFlag 逻辑删除标志
      * @return 歌手列表
      */
-    Optional<ArrayList<Singer>> findAllBySingerNameContainingAndLogicalDeleteFlag(String singerName, Boolean logicalDeleteFlag);
+    Optional<List<Singer>> findAllBySingerNameContainingAndLogicalDeleteFlag(String singerName, Boolean logicalDeleteFlag);
 }

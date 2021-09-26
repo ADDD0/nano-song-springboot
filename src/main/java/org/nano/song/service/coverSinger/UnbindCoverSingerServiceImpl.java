@@ -11,7 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 @Service
 @Transactional
@@ -28,10 +29,10 @@ public class UnbindCoverSingerServiceImpl implements UnbindCoverSingerService {
 
         int songId = unbindCoverSingerBean.getSongId();
         // 通过歌曲id查找所有翻唱歌手
-        ArrayList<CoverSinger> coverSingerArrayList = coverSingerRepository.findAllBySongId(songId)
-                .orElse(new ArrayList<>());
+        List<CoverSinger> coverSingerList = coverSingerRepository.findAllBySongId(songId)
+                .orElse(Collections.emptyList());
 
-        for (CoverSinger coverSinger : coverSingerArrayList) {
+        for (CoverSinger coverSinger : coverSingerList) {
             // 通过歌手id查找歌手 若不存在 报400
             singerRepository.findBySingerIdAndLogicalDeleteFlag(coverSinger.getSingerId(), DELETE_FLAG.UNDELETED.getCode())
                     .orElseThrow(() -> new ResourceNotFoundException(Constant.SHOW_SINGER, "id=" + coverSinger.getSingerId()));

@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.Table;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Table(name = Constant.TABLE_SONG_COLLECTION)
@@ -38,5 +38,5 @@ public interface SongCollectionRepository extends JpaRepository<SongCollection, 
      * @param logicalDeleteFlag 逻辑删除标志
      * @return 歌曲集合列表
      */
-    Optional<ArrayList<SongCollection>> findAllBySongTitleContainingAndLogicalDeleteFlag(String songTitle, Boolean logicalDeleteFlag);
+    Optional<List<SongCollection>> findAllBySongTitleContainingAndLogicalDeleteFlag(String songTitle, Boolean logicalDeleteFlag);
 }

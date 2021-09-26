@@ -12,7 +12,7 @@ import org.nano.song.info.bean.coverSinger.QueryCoverSingerBean;
 import org.nano.song.info.bean.coverSinger.ReturnCoverSingerBean;
 import org.nano.song.info.bean.song.QuerySongBean;
 import org.nano.song.info.bean.song.ReturnSongBean;
-import org.nano.song.info.response.song.QuerySongResponse;
+import org.nano.song.info.response.song.QuerySongApiResponse;
 import org.nano.song.service.coverSinger.QueryCoverSingerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,9 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Date;
+import java.util.*;
 
 @Service
 @Transactional
@@ -38,48 +36,48 @@ public class QuerySongServiceImpl implements QuerySongService {
     private QueryCoverSingerService queryCoverSingerService;
 
     @Override
-    public QuerySongResponse querySongBySongCollectionId(QuerySongBean querySongBean) throws ResourceNotFoundException {
+    public QuerySongApiResponse querySongBySongCollectionId(QuerySongBean querySongBean) throws ResourceNotFoundException {
 
         Integer songCollectionId = querySongBean.getSongCollectionId();
         // 通过歌曲集合id查找所有歌曲
-        ArrayList<Song> songArrayList = songRepository.findAllBySongCollectionIdAndLogicalDeleteFlag(songCollectionId, DELETE_FLAG.UNDELETED.getCode())
-                .orElse(new ArrayList<>());
+        List<Song> songList = songRepository.findAllBySongCollectionIdAndLogicalDeleteFlag(songCollectionId, DELETE_FLAG.UNDELETED.getCode())
+                .orElse(Collections.emptyList());
 
-        ArrayList<ReturnSongBean> returnSongBeanArrayList = new ArrayList<>();
-        for (Song song : songArrayList) {
+        List<ReturnSongBean> returnSongBeanList = new ArrayList<>();
+        for (Song song : songList) {
             QueryCoverSingerBean queryCoverSingerBean = new QueryCoverSingerBean();
             queryCoverSingerBean.setSongId(song.getSongId());
             // 查询翻唱歌手
             ReturnCoverSingerBean returnCoverSingerBean = queryCoverSingerService.queryCoverSinger(queryCoverSingerBean);
-            ArrayList<CoverSinger> coverSingerArrayList = returnCoverSingerBean.getCoverSingerArrayList();
+            List<CoverSinger> coverSingerList = returnCoverSingerBean.getCoverSingerList();
 
-            ArrayList<Singer> singerArrayList = new ArrayList<>();
-            for (CoverSinger coverSinger : coverSingerArrayList) {
+            List<Singer> singerList = new ArrayList<>();
+            for (CoverSinger coverSinger : coverSingerList) {
                 // 通过歌手id查找歌手
                 Singer singer = singerRepository.findBySingerIdAndLogicalDeleteFlag(coverSinger.getSingerId(), DELETE_FLAG.UNDELETED.getCode())
                         .orElseThrow(() -> new ResourceNotFoundException(Constant.SHOW_SINGER, "id=" + coverSinger.getSingerId()));
-                singerArrayList.add(singer);
+                singerList.add(singer);
             }
             // 翻唱歌手排序
-            singerArrayList.sort(Comparator.comparing(Singer::getSingerName));
+            singerList.sort(Comparator.comparing(Singer::getSingerName));
 
             ReturnSongBean returnSongBean = new ReturnSongBean();
             returnSongBean.setSong(song);
-            returnSongBean.setSingerArrayList(singerArrayList);
+            returnSongBean.setSingerList(singerList);
             // 插入当前歌曲查询结果
-            returnSongBeanArrayList.add(returnSongBean);
+            returnSongBeanList.add(returnSongBean);
         }
         // 歌曲查询结果按弹唱日期排序
-        returnSongBeanArrayList.sort(Comparator.comparing(o -> o.getSong().getPerformanceDate()));
+        returnSongBeanList.sort(Comparator.comparing(o -> o.getSong().getPerformanceDate()));
 
-        QuerySongResponse querySongResponse = new QuerySongResponse();
-        querySongResponse.setReturnSongBeanArrayList(returnSongBeanArrayList);
+        QuerySongApiResponse querySongApiResponse = new QuerySongApiResponse();
+        querySongApiResponse.setReturnSongBeanList(returnSongBeanList);
 
-        return querySongResponse;
+        return querySongApiResponse;
     }
 
     @Override
-    public QuerySongResponse querySongByPerformanceDate(QuerySongBean querySongBean) throws ResourceNotFoundException, ParseException {
+    public QuerySongApiResponse querySongByPerformanceDate(QuerySongBean querySongBean) throws ResourceNotFoundException, ParseException {
 
         String performanceDate = querySongBean.getPerformanceDate();
 
@@ -92,39 +90,39 @@ public class QuerySongServiceImpl implements QuerySongService {
             throw new ParseException(performanceDate, e.getErrorOffset());
         }
         // 通过弹唱日期查找所有歌曲
-        ArrayList<Song> songArrayList = songRepository.findAllByPerformanceDateAndLogicalDeleteFlag(parsePerformanceDate, DELETE_FLAG.UNDELETED.getCode())
-                .orElse(new ArrayList<>());
+        List<Song> songList = songRepository.findAllByPerformanceDateAndLogicalDeleteFlag(parsePerformanceDate, DELETE_FLAG.UNDELETED.getCode())
+                .orElse(Collections.emptyList());
 
-        ArrayList<ReturnSongBean> returnSongBeanArrayList = new ArrayList<>();
-        for (Song song : songArrayList) {
+        List<ReturnSongBean> returnSongBeanList = new ArrayList<>();
+        for (Song song : songList) {
             QueryCoverSingerBean queryCoverSingerBean = new QueryCoverSingerBean();
             queryCoverSingerBean.setSongId(song.getSongId());
             // 查询翻唱歌手
             ReturnCoverSingerBean returnCoverSingerBean = queryCoverSingerService.queryCoverSinger(queryCoverSingerBean);
-            ArrayList<CoverSinger> coverSingerArrayList = returnCoverSingerBean.getCoverSingerArrayList();
+            List<CoverSinger> coverSingerList = returnCoverSingerBean.getCoverSingerList();
 
-            ArrayList<Singer> singerArrayList = new ArrayList<>();
-            for (CoverSinger coverSinger : coverSingerArrayList) {
+            List<Singer> singerList = new ArrayList<>();
+            for (CoverSinger coverSinger : coverSingerList) {
                 // 通过歌手id查找歌手
                 Singer singer = singerRepository.findBySingerIdAndLogicalDeleteFlag(coverSinger.getSingerId(), DELETE_FLAG.UNDELETED.getCode())
                         .orElseThrow(() -> new ResourceNotFoundException(Constant.SHOW_SINGER, "id=" + coverSinger.getSingerId()));
-                singerArrayList.add(singer);
+                singerList.add(singer);
             }
             // 翻唱歌手排序
-            singerArrayList.sort(Comparator.comparing(Singer::getSingerName));
+            singerList.sort(Comparator.comparing(Singer::getSingerName));
 
             ReturnSongBean returnSongBean = new ReturnSongBean();
             returnSongBean.setSong(song);
-            returnSongBean.setSingerArrayList(singerArrayList);
+            returnSongBean.setSingerList(singerList);
             // 插入当前歌曲查询结果
-            returnSongBeanArrayList.add(returnSongBean);
+            returnSongBeanList.add(returnSongBean);
         }
         // 歌曲查询结果按弹唱日期排序
-        returnSongBeanArrayList.sort(Comparator.comparing(o -> o.getSong().getPerformanceDate()));
+        returnSongBeanList.sort(Comparator.comparing(o -> o.getSong().getPerformanceDate()));
 
-        QuerySongResponse querySongResponse = new QuerySongResponse();
-        querySongResponse.setReturnSongBeanArrayList(returnSongBeanArrayList);
+        QuerySongApiResponse querySongApiResponse = new QuerySongApiResponse();
+        querySongApiResponse.setReturnSongBeanList(returnSongBeanList);
 
-        return querySongResponse;
+        return querySongApiResponse;
     }
 }

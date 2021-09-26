@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 @Service
 @Transactional
@@ -24,30 +26,30 @@ public class QueryOriginalSingerServiceImpl implements QueryOriginalSingerServic
         Integer singerId = queryOriginalSingerBean.getSingerId();
 
         ReturnOriginalSingerBean returnOriginalSingerBean = new ReturnOriginalSingerBean();
-        ArrayList<OriginalSinger> originalSingerArrayList = new ArrayList<>();
+        List<OriginalSinger> originalSingerList = new ArrayList<>();
         // 内部调用 不验证数据有效性
         if (songCollectionId != null && singerId == null) {
-            originalSingerArrayList = queryOriginalSingerBySongCollectionId(songCollectionId);
+            originalSingerList = queryOriginalSingerBySongCollectionId(songCollectionId);
         } else if (songCollectionId == null && singerId != null) {
-            originalSingerArrayList = queryOriginalSingerBySingerId(singerId);
+            originalSingerList = queryOriginalSingerBySingerId(singerId);
         } else {
-            originalSingerArrayList.add(queryOriginalSingerBySongCollectionIdAndSingerId(songCollectionId, singerId));
+            originalSingerList.add(queryOriginalSingerBySongCollectionIdAndSingerId(songCollectionId, singerId));
         }
-        returnOriginalSingerBean.setOriginalSingerArrayList(originalSingerArrayList);
+        returnOriginalSingerBean.setOriginalSingerList(originalSingerList);
 
         return returnOriginalSingerBean;
     }
 
-    private ArrayList<OriginalSinger> queryOriginalSingerBySongCollectionId(Integer songCollectionId) {
+    private List<OriginalSinger> queryOriginalSingerBySongCollectionId(Integer songCollectionId) {
 
         // 通过歌曲集合id查找所有原唱歌手
-        return originalSingerRepository.findAllBySongCollectionId(songCollectionId).orElse(new ArrayList<>());
+        return originalSingerRepository.findAllBySongCollectionId(songCollectionId).orElse(Collections.emptyList());
     }
 
-    private ArrayList<OriginalSinger> queryOriginalSingerBySingerId(Integer singerId) {
+    private List<OriginalSinger> queryOriginalSingerBySingerId(Integer singerId) {
 
         // 通过歌手id查找所有原唱歌手
-        return originalSingerRepository.findAllBySingerId(singerId).orElse(new ArrayList<>());
+        return originalSingerRepository.findAllBySingerId(singerId).orElse(Collections.emptyList());
     }
 
     private OriginalSinger queryOriginalSingerBySongCollectionIdAndSingerId(Integer songCollectionId, Integer singerId) {

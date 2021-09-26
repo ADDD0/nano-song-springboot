@@ -2,7 +2,7 @@ package org.nano.song.service.song;
 
 import org.nano.song.handler.exception.ResourceNotFoundException;
 import org.nano.song.info.bean.song.QuerySongBean;
-import org.nano.song.info.response.song.QuerySongResponse;
+import org.nano.song.info.response.song.QuerySongApiResponse;
 
 import java.text.ParseException;
 
@@ -15,7 +15,7 @@ public interface QuerySongService {
      * @return 查询歌曲响应
      * @throws ResourceNotFoundException 查找数据不存在
      */
-    QuerySongResponse querySongBySongCollectionId(QuerySongBean querySongBean) throws ResourceNotFoundException;
+    QuerySongApiResponse querySongBySongCollectionId(QuerySongBean querySongBean) throws ResourceNotFoundException;
 
     /**
      * 通过弹唱日期查询歌曲
@@ -25,5 +25,5 @@ public interface QuerySongService {
      * @throws ResourceNotFoundException 查找数据不存在
      * @throws ParseException            格式转换错误
      */
-    QuerySongResponse querySongByPerformanceDate(QuerySongBean querySongBean) throws ResourceNotFoundException, ParseException;
+    QuerySongApiResponse querySongByPerformanceDate(QuerySongBean querySongBean) throws ResourceNotFoundException, ParseException;
 }

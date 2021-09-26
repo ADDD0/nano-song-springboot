@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.Table;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Table(name = Constant.TABLE_COVER_SINGER)
@@ -28,7 +28,7 @@ public interface CoverSingerRepository extends JpaRepository<CoverSinger, Intege
      * @param songId 歌曲id
      * @return 翻唱歌手列表
      */
-    Optional<ArrayList<CoverSinger>> findAllBySongId(Integer songId);
+    Optional<List<CoverSinger>> findAllBySongId(Integer songId);
 
     /**
      * 根据 singerId 查找所有翻唱歌手（精确查询）
@@ -36,5 +36,5 @@ public interface CoverSingerRepository extends JpaRepository<CoverSinger, Intege
      * @param singerId 歌手id
      * @return 翻唱歌手列表
      */
-    Optional<ArrayList<CoverSinger>> findAllBySingerId(Integer singerId);
+    Optional<List<CoverSinger>> findAllBySingerId(Integer singerId);
 }
