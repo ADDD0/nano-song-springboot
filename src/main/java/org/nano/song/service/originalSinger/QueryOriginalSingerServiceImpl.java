@@ -12,6 +12,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * 查询原唱歌手服务接口实现类
+ */
 @Service
 @Transactional
 public class QueryOriginalSingerServiceImpl implements QueryOriginalSingerService {
@@ -19,6 +22,12 @@ public class QueryOriginalSingerServiceImpl implements QueryOriginalSingerServic
     @Autowired
     private OriginalSingerRepository originalSingerRepository;
 
+    /**
+     * 查询原唱歌手
+     *
+     * @param queryOriginalSingerBean 查询原唱歌手参数
+     * @return 返回原唱歌手参数
+     */
     @Override
     public ReturnOriginalSingerBean queryOriginalSinger(QueryOriginalSingerBean queryOriginalSingerBean) {
 
@@ -40,21 +49,37 @@ public class QueryOriginalSingerServiceImpl implements QueryOriginalSingerServic
         return returnOriginalSingerBean;
     }
 
+    /**
+     * 通过歌曲集合id查询所有原唱歌手
+     *
+     * @param songCollectionId 歌曲集合id
+     * @return 原唱歌手列表
+     */
     private List<OriginalSinger> queryOriginalSingerBySongCollectionId(Integer songCollectionId) {
 
-        // 通过歌曲集合id查找所有原唱歌手
         return originalSingerRepository.findAllBySongCollectionId(songCollectionId).orElse(Collections.emptyList());
     }
 
+    /**
+     * 通过歌手id查询所有原唱歌手
+     *
+     * @param singerId 歌手id
+     * @return 原唱歌手列表
+     */
     private List<OriginalSinger> queryOriginalSingerBySingerId(Integer singerId) {
 
-        // 通过歌手id查找所有原唱歌手
         return originalSingerRepository.findAllBySingerId(singerId).orElse(Collections.emptyList());
     }
 
+    /**
+     * 通过歌曲集合id和歌手id查询原唱歌手
+     *
+     * @param songCollectionId 歌曲集合id
+     * @param singerId         歌手id
+     * @return 原唱歌手
+     */
     private OriginalSinger queryOriginalSingerBySongCollectionIdAndSingerId(Integer songCollectionId, Integer singerId) {
 
-        // 通过歌曲集合id和歌手id查找原唱歌手
         return originalSingerRepository.findBySongCollectionIdAndSingerId(songCollectionId, singerId).orElse(new OriginalSinger());
     }
 }

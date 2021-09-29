@@ -9,12 +9,15 @@ import javax.persistence.Table;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * 歌手仓储库类
+ */
 @Table(name = Constant.TABLE_SINGER)
 @Repository
 public interface SingerRepository extends JpaRepository<Singer, Integer> {
 
     /**
-     * 根据 singerId 查找歌手（精确查询）
+     * 根据歌手id查询歌手（精确查询）
      *
      * @param singerId          歌手id
      * @param logicalDeleteFlag 逻辑删除标志
@@ -23,7 +26,7 @@ public interface SingerRepository extends JpaRepository<Singer, Integer> {
     Optional<Singer> findBySingerIdAndLogicalDeleteFlag(Integer singerId, Boolean logicalDeleteFlag);
 
     /**
-     * 根据 singerName 查找歌手（精确查询）
+     * 根据歌手姓名查询歌手（精确查询）
      *
      * @param singerName        歌手姓名
      * @param logicalDeleteFlag 逻辑删除标志
@@ -32,7 +35,7 @@ public interface SingerRepository extends JpaRepository<Singer, Integer> {
     Optional<Singer> findBySingerNameAndLogicalDeleteFlag(String singerName, Boolean logicalDeleteFlag);
 
     /**
-     * 根据 singerName 查找所有歌手（模糊查询）
+     * 根据歌手姓名查询所有歌手（模糊查询）
      *
      * @param singerName        歌手姓名
      * @param logicalDeleteFlag 逻辑删除标志

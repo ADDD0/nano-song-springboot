@@ -8,6 +8,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+/**
+ * 歌曲集合实体类
+ */
 @Data
 @Entity
 @EqualsAndHashCode(callSuper = true)

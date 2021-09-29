@@ -23,6 +23,9 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+/**
+ * 查询歌曲集合服务接口实现类
+ */
 @Service
 @Transactional
 public class QuerySongCollectionServiceImpl implements QuerySongCollectionService {
@@ -36,12 +39,19 @@ public class QuerySongCollectionServiceImpl implements QuerySongCollectionServic
     @Autowired
     private QueryOriginalSingerService queryOriginalSingerService;
 
+    /**
+     * 通过歌曲标题查询歌曲集合
+     *
+     * @param querySongCollectionBean 查询歌曲集合参数
+     * @return 查询歌曲集合响应
+     * @throws ResourceNotFoundException 资源未找到
+     */
     @Override
     public QuerySongCollectionApiResponse querySongCollectionBySongTitle(QuerySongCollectionBean querySongCollectionBean)
             throws ResourceNotFoundException {
 
         String songTitle = querySongCollectionBean.getSongTitle();
-        // 通过歌曲标题查找所有歌曲集合
+        // 通过歌曲标题查询所有歌曲集合
         List<SongCollection> songCollectionList = songCollectionRepository.findAllBySongTitleContainingAndLogicalDeleteFlag(songTitle, DELETE_FLAG.UNDELETED.getCode())
                 .orElse(Collections.emptyList());
 
@@ -55,7 +65,7 @@ public class QuerySongCollectionServiceImpl implements QuerySongCollectionServic
 
             List<Singer> singerList = new ArrayList<>();
             for (OriginalSinger originalSinger : originalSingerList) {
-                // 通过歌手id查找歌手
+                // 通过歌手id查询歌手
                 Singer singer = singerRepository.findBySingerIdAndLogicalDeleteFlag(originalSinger.getSingerId(), DELETE_FLAG.UNDELETED.getCode())
                         .orElseThrow(() -> new ResourceNotFoundException(Constant.SHOW_SINGER, "id=" + originalSinger.getSingerId()));
                 singerList.add(singer);
@@ -78,16 +88,23 @@ public class QuerySongCollectionServiceImpl implements QuerySongCollectionServic
         return querySongCollectionApiResponse;
     }
 
+    /**
+     * 通过歌手姓名查询歌曲集合
+     *
+     * @param querySongCollectionBean 查询歌曲集合参数
+     * @return 查询歌曲集合响应
+     * @throws ResourceNotFoundException 资源未找到
+     */
     @Override
     public QuerySongCollectionApiResponse querySongCollectionBySingerName(QuerySongCollectionBean querySongCollectionBean)
             throws ResourceNotFoundException {
 
         String singerName = querySongCollectionBean.getSingerName();
-        // 通过歌手姓名查找所有歌手
+        // 通过歌手姓名查询所有歌手
         List<Singer> querySingerList = singerRepository.findAllBySingerNameContainingAndLogicalDeleteFlag(singerName, DELETE_FLAG.UNDELETED.getCode())
                 .orElse(Collections.emptyList());
 
-        // 查找该歌手演唱过的所有歌曲集合
+        // 查询该歌手演唱过的所有歌曲集合
         List<Integer> songCollectionIdList = new ArrayList<>();
         for (Singer singer : querySingerList) {
             QueryOriginalSingerBean queryOriginalSingerBean = new QueryOriginalSingerBean();
@@ -108,7 +125,7 @@ public class QuerySongCollectionServiceImpl implements QuerySongCollectionServic
 
         List<ReturnSongCollectionBean> returnSongCollectionBeanList = new ArrayList<>();
         for (int songCollectionId : songCollectionIdList) {
-            // 通过歌曲集合id查找歌曲集合 若不存在 报400
+            // 通过歌曲集合id查询歌曲集合 若不存在 报400
             SongCollection songCollection = songCollectionRepository.findBySongCollectionIdAndLogicalDeleteFlag(songCollectionId, DELETE_FLAG.UNDELETED.getCode())
                     .orElseThrow(() -> new ResourceNotFoundException(Constant.SHOW_SONG_COLLECTION, "id=" + songCollectionId));
 
@@ -120,7 +137,7 @@ public class QuerySongCollectionServiceImpl implements QuerySongCollectionServic
 
             List<Singer> singerList = new ArrayList<>();
             for (OriginalSinger originalSinger : allOriginalSingerList) {
-                // 通过歌手id查找歌手
+                // 通过歌手id查询歌手
                 Singer singer = singerRepository.findBySingerIdAndLogicalDeleteFlag(originalSinger.getSingerId(), DELETE_FLAG.UNDELETED.getCode())
                         .orElseThrow(() -> new ResourceNotFoundException(Constant.SHOW_SINGER, "id=" + originalSinger.getSingerId()));
                 singerList.add(singer);

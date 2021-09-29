@@ -4,7 +4,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
- * 查找数据已存在
+ * 资源已存在异常
  */
 @Data
 @EqualsAndHashCode(callSuper = true)

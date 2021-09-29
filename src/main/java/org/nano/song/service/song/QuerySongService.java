@@ -6,6 +6,9 @@ import org.nano.song.info.response.song.QuerySongApiResponse;
 
 import java.text.ParseException;
 
+/**
+ * 查询歌曲服务接口类
+ */
 public interface QuerySongService {
 
     /**
@@ -13,7 +16,7 @@ public interface QuerySongService {
      *
      * @param querySongBean 查询歌曲参数
      * @return 查询歌曲响应
-     * @throws ResourceNotFoundException 查找数据不存在
+     * @throws ResourceNotFoundException 资源未找到
      */
     QuerySongApiResponse querySongBySongCollectionId(QuerySongBean querySongBean) throws ResourceNotFoundException;
 
@@ -22,7 +25,7 @@ public interface QuerySongService {
      *
      * @param querySongBean 查询歌曲参数
      * @return 查询歌曲响应
-     * @throws ResourceNotFoundException 查找数据不存在
+     * @throws ResourceNotFoundException 资源未找到
      * @throws ParseException            格式转换错误
      */
     QuerySongApiResponse querySongByPerformanceDate(QuerySongBean querySongBean) throws ResourceNotFoundException, ParseException;

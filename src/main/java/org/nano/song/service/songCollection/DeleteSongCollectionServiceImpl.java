@@ -19,6 +19,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * 删除歌曲集合服务接口实现类
+ */
 @Service
 @Transactional
 public class DeleteSongCollectionServiceImpl implements DeleteSongCollectionService {
@@ -35,15 +38,21 @@ public class DeleteSongCollectionServiceImpl implements DeleteSongCollectionServ
     @Autowired
     private UnbindOriginalSingerService unbindOriginalSingerService;
 
+    /**
+     * 删除歌曲集合
+     *
+     * @param deleteSongCollectionBean 删除歌曲集合参数
+     * @throws ResourceNotFoundException 资源未找到
+     */
     @Override
     public void deleteSongCollection(DeleteSongCollectionBean deleteSongCollectionBean) throws ResourceNotFoundException {
 
         int songCollectionId = deleteSongCollectionBean.getSongCollectionId();
-        // 通过歌曲集合id查找歌曲集合 若不存在 报400
+        // 通过歌曲集合id查询歌曲集合 若不存在 报400
         SongCollection songCollection = songCollectionRepository.findBySongCollectionIdAndLogicalDeleteFlag(songCollectionId, DELETE_FLAG.UNDELETED.getCode())
                 .orElseThrow(() -> new ResourceNotFoundException(Constant.SHOW_SONG_COLLECTION, "id=" + songCollectionId));
 
-        // 通过歌曲集合id查找所有歌曲
+        // 通过歌曲集合id查询所有歌曲
         List<Song> songList = songRepository.findAllBySongCollectionIdAndLogicalDeleteFlag(songCollection.getSongCollectionId(), DELETE_FLAG.UNDELETED.getCode())
                 .orElse(Collections.emptyList());
         // 删除该歌曲集合下的所有歌曲

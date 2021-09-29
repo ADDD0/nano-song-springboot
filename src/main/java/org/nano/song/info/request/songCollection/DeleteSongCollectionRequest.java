@@ -5,6 +5,9 @@ import org.nano.song.domain.Constant;
 
 import javax.validation.constraints.NotNull;
 
+/**
+ * 删除歌曲集合请求
+ */
 @Data
 public class DeleteSongCollectionRequest {
     // 歌曲集合id

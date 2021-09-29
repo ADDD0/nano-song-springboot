@@ -3,6 +3,9 @@ package org.nano.song.service.coverSinger;
 import org.nano.song.info.bean.coverSinger.QueryCoverSingerBean;
 import org.nano.song.info.bean.coverSinger.ReturnCoverSingerBean;
 
+/**
+ * 查询翻唱歌手服务接口类
+ */
 public interface QueryCoverSingerService {
 
     /**

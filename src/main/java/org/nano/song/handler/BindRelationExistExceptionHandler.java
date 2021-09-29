@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+/**
+ * 绑定关系已存在异常处理类
+ */
 @RestControllerAdvice
 @Slf4j
 public class BindRelationExistExceptionHandler {

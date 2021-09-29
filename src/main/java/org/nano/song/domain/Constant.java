@@ -1,10 +1,13 @@
 package org.nano.song.domain;
 
+/**
+ * 常量定义
+ */
 public class Constant {
 
     /**
      * 数据库表命名
-     **/
+     */
     public static final String TABLE_COVER_SINGER = "COVER_SINGER";
     public static final String TABLE_ORIGINAL_SINGER = "ORIGINAL_SINGER";
     public static final String TABLE_SINGER = "SINGER";
@@ -12,8 +15,8 @@ public class Constant {
     public static final String TABLE_SONG_COLLECTION = "SONG_COLLECTION";
 
     /**
-     * 访问路径
-     **/
+     * 访问对象
+     */
     public static final String URL_ORIGINAL_SINGER = "/originalSinger";
     public static final String URL_QUERY_SONG = "/querySong";
     public static final String URL_QUERY_SONG_COLLECTION = "/querySongCollection";
@@ -23,7 +26,7 @@ public class Constant {
 
     /**
      * 请求操作
-     **/
+     */
     public static final String OPERATION_ADD = "/add";
     public static final String OPERATION_RELATE = "/relate";
     public static final String OPERATION_DELETE = "/delete";
@@ -31,8 +34,8 @@ public class Constant {
     public static final String OPERATION_QUERY = "/query";
 
     /**
-     * 查询实体
-     **/
+     * 查询字段
+     */
     public static final String QUERY_CONTENT_SONG_COLLECTION_ID = "/songCollectionId";
     public static final String QUERY_CONTENT_PERFORMANCE_DATE = "/performanceDate";
     public static final String QUERY_CONTENT_SINGER_NAME = "/singerName";
@@ -40,12 +43,12 @@ public class Constant {
 
     /**
      * 固定文言
-     **/
+     */
     public static final String SLASH = "/";
 
     /**
      * 描述文言
-     **/
+     */
     public static final String MSG_ADD_SUCCESS = "新增成功";
     public static final String MSG_BIND = "已绑定";
     public static final String MSG_RELATE_SUCCESS = "关联成功";
@@ -57,21 +60,21 @@ public class Constant {
 
     /**
      * 后端展示文言
-     **/
+     */
     public static final String LOG_ADD = "新增对象";
     public static final String LOG_DELETE = "删除对象";
     public static final String LOG_QUERY = "查询对象";
 
     /**
      * 前端展示文言
-     **/
+     */
     public static final String SHOW_SINGER = "歌手";
     public static final String SHOW_SONG = "歌曲";
     public static final String SHOW_SONG_COLLECTION = "歌曲集合";
 
     /**
      * 错误信息
-     **/
+     */
     public static final String ERR_MSG_SONG_COLLECTION_ID_EMPTY = "歌曲集合id不能为空";
     public static final String ERR_MSG_COVER_SINGER_EMPTY = "翻唱歌手不能为空";
     public static final String ERR_MSG_PERFORMANCE_DATE_EMPTY = "弹唱日期未选择";
@@ -84,6 +87,6 @@ public class Constant {
 
     /**
      * 静态资源保存根路径
-     **/
+     */
     public static final String RESOURCES_STATIC_ROOT_PATH = "../nano-song-springboot/src/main/resources/static/";
 }

@@ -4,7 +4,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
- * 属性未设置
+ * 属性未设置异常
  */
 @Data
 @EqualsAndHashCode(callSuper = true)

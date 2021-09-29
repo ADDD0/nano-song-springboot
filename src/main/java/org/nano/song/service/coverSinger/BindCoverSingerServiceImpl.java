@@ -15,6 +15,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ * 绑定翻唱歌手服务接口实现类
+ */
 @Service
 @Transactional
 public class BindCoverSingerServiceImpl implements BindCoverSingerService {
@@ -28,16 +31,23 @@ public class BindCoverSingerServiceImpl implements BindCoverSingerService {
     @Autowired
     private SongRepository songRepository;
 
+    /**
+     * 绑定翻唱歌手
+     *
+     * @param bindCoverSingerBean 绑定翻唱歌手参数
+     * @throws ResourceNotFoundException  资源未找到
+     * @throws BindRelationExistException 绑定关系已存在
+     */
     @Override
     public void bindCoverSinger(BindCoverSingerBean bindCoverSingerBean)
             throws ResourceNotFoundException, BindRelationExistException {
 
         int singerId = bindCoverSingerBean.getSingerId();
         int songId = bindCoverSingerBean.getSongId();
-        // 通过歌曲id查找歌曲 若不存在 报400
+        // 通过歌曲id查询歌曲 若不存在 报400
         Song song = songRepository.findBySongIdAndLogicalDeleteFlag(songId, DELETE_FLAG.UNDELETED.getCode())
                 .orElseThrow(() -> new ResourceNotFoundException(Constant.SHOW_SONG, "id=" + songId));
-        // 通过歌手id查找歌手 若不存在 报400
+        // 通过歌手id查询歌手 若不存在 报400
         Singer singer = singerRepository.findBySingerIdAndLogicalDeleteFlag(singerId, DELETE_FLAG.UNDELETED.getCode())
                 .orElseThrow(() -> new ResourceNotFoundException(Constant.SHOW_SINGER, "id=" + singerId));
 

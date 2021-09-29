@@ -25,6 +25,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Base64;
 
+/**
+ * 导入歌曲服务接口实现类
+ */
 @Service
 @Transactional
 public class ImportSongServiceImpl implements ImportSongService {
@@ -41,6 +44,16 @@ public class ImportSongServiceImpl implements ImportSongService {
     @Autowired
     private BindCoverSingerService bindCoverSingerService;
 
+    /**
+     * 导入歌曲
+     *
+     * @param importSongBean 导入歌曲参数
+     * @throws ResourceExistException     资源已存在
+     * @throws ResourceNotFoundException  资源未找到
+     * @throws ParseException             格式转换错误
+     * @throws IOException                文件IO错误
+     * @throws BindRelationExistException 绑定关系已存在
+     */
     @Override
     public void importSong(ImportSongBean importSongBean) throws ResourceExistException, ResourceNotFoundException, ParseException, IOException, BindRelationExistException {
 
@@ -49,10 +62,10 @@ public class ImportSongServiceImpl implements ImportSongService {
         String performanceDate = importSongBean.getPerformanceDate();
         String songFileContent = importSongBean.getSongFileContent();
         String songTitle = importSongBean.getSongTitle();
-        // 通过歌手姓名查找翻唱歌手 若不存在 报400
+        // 通过歌手姓名查询翻唱歌手 若不存在 报400
         Singer singer = singerRepository.findBySingerNameAndLogicalDeleteFlag(coverSingerName, DELETE_FLAG.UNDELETED.getCode())
                 .orElseThrow(() -> new ResourceNotFoundException(Constant.SHOW_SINGER, coverSingerName));
-        // 通过歌曲标题查找歌曲集合 若不存在 报400
+        // 通过歌曲标题查询歌曲集合 若不存在 报400
         SongCollection songCollection = songCollectionRepository.findBySongTitleAndLogicalDeleteFlag(songTitle, DELETE_FLAG.UNDELETED.getCode())
                 .orElseThrow(() -> new ResourceNotFoundException(Constant.SHOW_SONG_COLLECTION, songTitle));
 

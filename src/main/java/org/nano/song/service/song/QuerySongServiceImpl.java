@@ -22,6 +22,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+/**
+ * 查询歌曲服务接口实现类
+ */
 @Service
 @Transactional
 public class QuerySongServiceImpl implements QuerySongService {
@@ -35,11 +38,18 @@ public class QuerySongServiceImpl implements QuerySongService {
     @Autowired
     private QueryCoverSingerService queryCoverSingerService;
 
+    /**
+     * 通过歌曲集合id查询歌曲
+     *
+     * @param querySongBean 查询歌曲参数
+     * @return 查询歌曲响应
+     * @throws ResourceNotFoundException 资源未找到
+     */
     @Override
     public QuerySongApiResponse querySongBySongCollectionId(QuerySongBean querySongBean) throws ResourceNotFoundException {
 
         Integer songCollectionId = querySongBean.getSongCollectionId();
-        // 通过歌曲集合id查找所有歌曲
+        // 通过歌曲集合id查询所有歌曲
         List<Song> songList = songRepository.findAllBySongCollectionIdAndLogicalDeleteFlag(songCollectionId, DELETE_FLAG.UNDELETED.getCode())
                 .orElse(Collections.emptyList());
 
@@ -53,7 +63,7 @@ public class QuerySongServiceImpl implements QuerySongService {
 
             List<Singer> singerList = new ArrayList<>();
             for (CoverSinger coverSinger : coverSingerList) {
-                // 通过歌手id查找歌手
+                // 通过歌手id查询歌手
                 Singer singer = singerRepository.findBySingerIdAndLogicalDeleteFlag(coverSinger.getSingerId(), DELETE_FLAG.UNDELETED.getCode())
                         .orElseThrow(() -> new ResourceNotFoundException(Constant.SHOW_SINGER, "id=" + coverSinger.getSingerId()));
                 singerList.add(singer);
@@ -76,6 +86,14 @@ public class QuerySongServiceImpl implements QuerySongService {
         return querySongApiResponse;
     }
 
+    /**
+     * 通过弹唱日期查询歌曲
+     *
+     * @param querySongBean 查询歌曲参数
+     * @return 查询歌曲响应
+     * @throws ResourceNotFoundException 资源未找到
+     * @throws ParseException            格式转换错误
+     */
     @Override
     public QuerySongApiResponse querySongByPerformanceDate(QuerySongBean querySongBean) throws ResourceNotFoundException, ParseException {
 
@@ -89,7 +107,7 @@ public class QuerySongServiceImpl implements QuerySongService {
             // 格式化弹唱日期失败 报400
             throw new ParseException(performanceDate, e.getErrorOffset());
         }
-        // 通过弹唱日期查找所有歌曲
+        // 通过弹唱日期查询所有歌曲
         List<Song> songList = songRepository.findAllByPerformanceDateAndLogicalDeleteFlag(parsePerformanceDate, DELETE_FLAG.UNDELETED.getCode())
                 .orElse(Collections.emptyList());
 
@@ -103,7 +121,7 @@ public class QuerySongServiceImpl implements QuerySongService {
 
             List<Singer> singerList = new ArrayList<>();
             for (CoverSinger coverSinger : coverSingerList) {
-                // 通过歌手id查找歌手
+                // 通过歌手id查询歌手
                 Singer singer = singerRepository.findBySingerIdAndLogicalDeleteFlag(coverSinger.getSingerId(), DELETE_FLAG.UNDELETED.getCode())
                         .orElseThrow(() -> new ResourceNotFoundException(Constant.SHOW_SINGER, "id=" + coverSinger.getSingerId()));
                 singerList.add(singer);

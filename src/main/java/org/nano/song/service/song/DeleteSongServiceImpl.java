@@ -12,6 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ * 删除歌曲服务接口实现类
+ */
 @Service
 @Transactional
 public class DeleteSongServiceImpl implements DeleteSongService {
@@ -22,11 +25,17 @@ public class DeleteSongServiceImpl implements DeleteSongService {
     @Autowired
     private UnbindCoverSingerService unbindCoverSingerService;
 
+    /**
+     * 删除歌曲
+     *
+     * @param deleteSongBean 删除歌曲参数
+     * @throws ResourceNotFoundException 资源未找到
+     */
     @Override
     public void deleteSong(DeleteSongBean deleteSongBean) throws ResourceNotFoundException {
 
         int songId = deleteSongBean.getSongId();
-        // 通过歌曲id查找歌曲 若不存在 报400
+        // 通过歌曲id查询歌曲 若不存在 报400
         Song song = songRepository.findBySongIdAndLogicalDeleteFlag(songId, DELETE_FLAG.UNDELETED.getCode())
                 .orElseThrow(() -> new ResourceNotFoundException(Constant.SHOW_SONG, "id=" + songId));
 

@@ -8,6 +8,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+/**
+ * 原唱歌手实体类
+ */
 @Data
 @Entity
 @EqualsAndHashCode(callSuper = true)

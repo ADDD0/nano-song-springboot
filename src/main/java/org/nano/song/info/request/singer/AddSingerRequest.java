@@ -5,6 +5,9 @@ import org.nano.song.domain.Constant;
 
 import javax.validation.constraints.NotBlank;
 
+/**
+ * 新增歌手请求
+ */
 @Data
 public class AddSingerRequest {
     // 歌手姓名

@@ -5,6 +5,9 @@ import org.nano.song.domain.Constant;
 
 import javax.validation.constraints.NotNull;
 
+/**
+ * 查询歌曲请求
+ */
 @Data
 public class QuerySongBySongCollectionIdRequest {
     // 歌曲集合id

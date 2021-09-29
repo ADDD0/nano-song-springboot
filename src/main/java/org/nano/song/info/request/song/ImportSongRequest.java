@@ -6,6 +6,9 @@ import org.nano.song.domain.Constant;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
+/**
+ * 导入歌曲请求
+ */
 @Data
 public class ImportSongRequest {
     // 文件名
@@ -18,7 +21,7 @@ public class ImportSongRequest {
     // 歌曲文件内容
     @NotBlank(message = Constant.ERR_MSG_FILE_CONTENT_EMPTY)
     private String songFileContent;
-    // 歌曲标题 用于查找所属歌曲集合
+    // 歌曲标题 用于查询所属歌曲集合
     @NotBlank(message = Constant.ERR_MSG_SONG_TITLE_EMPTY)
     private String songTitle;
 }

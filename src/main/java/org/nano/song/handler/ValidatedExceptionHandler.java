@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.List;
 
+/**
+ * 精查异常处理类
+ */
 @RestControllerAdvice
 @Slf4j
 public class ValidatedExceptionHandler {

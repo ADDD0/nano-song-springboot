@@ -10,12 +10,15 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * 歌曲仓储库类
+ */
 @Table(name = Constant.TABLE_SONG)
 @Repository
 public interface SongRepository extends JpaRepository<Song, Integer> {
 
     /**
-     * 根据 songId 查找歌曲（精确查询）
+     * 根据歌曲id查询歌曲（精确查询）
      *
      * @param songId            歌曲id
      * @param logicalDeleteFlag 逻辑删除标志
@@ -24,7 +27,7 @@ public interface SongRepository extends JpaRepository<Song, Integer> {
     Optional<Song> findBySongIdAndLogicalDeleteFlag(Integer songId, Boolean logicalDeleteFlag);
 
     /**
-     * 根据 performanceDate 查找所有歌曲（精确查询）
+     * 根据弹唱日期查询所有歌曲（精确查询）
      *
      * @param performanceDate   弹唱日期
      * @param logicalDeleteFlag 逻辑删除标志
@@ -33,7 +36,7 @@ public interface SongRepository extends JpaRepository<Song, Integer> {
     Optional<List<Song>> findAllByPerformanceDateAndLogicalDeleteFlag(Date performanceDate, Boolean logicalDeleteFlag);
 
     /**
-     * 根据 songCollectionId 查找所有歌曲（精确查询）
+     * 根据歌曲集合id查询所有歌曲（精确查询）
      *
      * @param songCollectionId  歌曲集合id
      * @param logicalDeleteFlag 逻辑删除标志

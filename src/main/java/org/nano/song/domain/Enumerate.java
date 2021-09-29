@@ -1,8 +1,13 @@
 package org.nano.song.domain;
 
+/**
+ * 枚举定义
+ */
 public class Enumerate {
 
-    // 逻辑删除标记
+    /**
+     * 逻辑删除标记
+     */
     public enum DELETE_FLAG {
 
         DELETED(true, "已删除"),
@@ -25,7 +30,9 @@ public class Enumerate {
         }
     }
 
-    // 完成度
+    /**
+     * 完成度
+     */
     public enum COMPLETION {
 
         KANBIKI("01", "完璧"),
@@ -50,7 +57,9 @@ public class Enumerate {
         }
     }
 
-    // 乐器
+    /**
+     * 乐器
+     */
     public enum INSTRUMENT {
 
         PIANO("01", "钢琴"),
@@ -75,7 +84,9 @@ public class Enumerate {
         }
     }
 
-    // 类型
+    /**
+     * 类型
+     */
     public enum TYPE {
 
         NORMAL("01", "普通弹唱"),
@@ -99,7 +110,9 @@ public class Enumerate {
         }
     }
 
-    // 场景
+    /**
+     * 场景
+     */
     public enum SCENE {
 
         B_NOMI("01", "B限"),

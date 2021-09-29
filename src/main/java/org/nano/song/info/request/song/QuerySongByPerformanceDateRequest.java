@@ -6,6 +6,9 @@ import org.nano.song.domain.Constant;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
+/**
+ * 查询歌曲请求
+ */
 @Data
 public class QuerySongByPerformanceDateRequest {
     // 弹唱日期

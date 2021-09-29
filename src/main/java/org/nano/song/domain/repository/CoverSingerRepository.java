@@ -9,12 +9,15 @@ import javax.persistence.Table;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * 翻唱歌手仓储库类
+ */
 @Table(name = Constant.TABLE_COVER_SINGER)
 @Repository
 public interface CoverSingerRepository extends JpaRepository<CoverSinger, Integer> {
 
     /**
-     * 根据 songId 和 singerId 查找翻唱歌手（精确查询）
+     * 根据歌曲id和歌手id查询翻唱歌手（精确查询）
      *
      * @param songId   歌曲id
      * @param singerId 歌手id
@@ -23,7 +26,7 @@ public interface CoverSingerRepository extends JpaRepository<CoverSinger, Intege
     Optional<CoverSinger> findBySongIdAndSingerId(Integer songId, Integer singerId);
 
     /**
-     * 根据 songId 查找所有翻唱歌手（精确查询）
+     * 根据歌曲id查询所有翻唱歌手（精确查询）
      *
      * @param songId 歌曲id
      * @return 翻唱歌手列表
@@ -31,7 +34,7 @@ public interface CoverSingerRepository extends JpaRepository<CoverSinger, Intege
     Optional<List<CoverSinger>> findAllBySongId(Integer songId);
 
     /**
-     * 根据 singerId 查找所有翻唱歌手（精确查询）
+     * 根据歌手id查询所有翻唱歌手（精确查询）
      *
      * @param singerId 歌手id
      * @return 翻唱歌手列表

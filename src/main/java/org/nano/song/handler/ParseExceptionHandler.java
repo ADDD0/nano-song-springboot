@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.text.ParseException;
 
+/**
+ * 格式转换异常处理类
+ */
 @RestControllerAdvice
 @Slf4j
 public class ParseExceptionHandler {

@@ -14,6 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ * 关联原唱歌手服务接口实现类
+ */
 @Service
 @Transactional
 public class RelateOriginalSingerServiceImpl implements RelateOriginalSingerService {
@@ -27,16 +30,23 @@ public class RelateOriginalSingerServiceImpl implements RelateOriginalSingerServ
     @Autowired
     private BindOriginalSingerService bindOriginalSingerService;
 
+    /**
+     * 关联原唱歌手
+     *
+     * @param relateOriginalSingerBean 关联原唱歌手参数
+     * @throws ResourceNotFoundException  资源未找到
+     * @throws BindRelationExistException 绑定关系已存在
+     */
     @Override
     public void relateOriginalSinger(RelateOriginalSingerBean relateOriginalSingerBean)
             throws ResourceNotFoundException, BindRelationExistException {
 
         String singerName = relateOriginalSingerBean.getSingerName();
         String songTitle = relateOriginalSingerBean.getSongTitle();
-        // 通过歌曲标题查找歌曲集合 若不存在 报400
+        // 通过歌曲标题查询歌曲集合 若不存在 报400
         SongCollection songCollection = songCollectionRepository.findBySongTitleAndLogicalDeleteFlag(songTitle, DELETE_FLAG.UNDELETED.getCode())
                 .orElseThrow(() -> new ResourceNotFoundException(Constant.SHOW_SONG_COLLECTION, songTitle));
-        // 通过歌手姓名查找歌手 若不存在 报400
+        // 通过歌手姓名查询歌手 若不存在 报400
         Singer singer = singerRepository.findBySingerNameAndLogicalDeleteFlag(singerName, DELETE_FLAG.UNDELETED.getCode())
                 .orElseThrow(() -> new ResourceNotFoundException(Constant.SHOW_SINGER, singerName));
 

@@ -10,6 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.util.Date;
 
+/**
+ * 歌曲实体类
+ */
 @Data
 @Entity
 @EqualsAndHashCode(callSuper = true)

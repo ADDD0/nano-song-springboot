@@ -9,12 +9,15 @@ import javax.persistence.Table;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * 歌曲集合仓储库类
+ */
 @Table(name = Constant.TABLE_SONG_COLLECTION)
 @Repository
 public interface SongCollectionRepository extends JpaRepository<SongCollection, Integer> {
 
     /**
-     * 根据 songCollectionId 查找歌曲集合（精确查询）
+     * 根据歌曲集合id查询歌曲集合（精确查询）
      *
      * @param songCollectionId  歌曲集合id
      * @param logicalDeleteFlag 逻辑删除标志
@@ -23,7 +26,7 @@ public interface SongCollectionRepository extends JpaRepository<SongCollection, 
     Optional<SongCollection> findBySongCollectionIdAndLogicalDeleteFlag(Integer songCollectionId, Boolean logicalDeleteFlag);
 
     /**
-     * 根据 songTitle 查找歌曲集合（精确查询）
+     * 根据歌曲标题查询歌曲集合（精确查询）
      *
      * @param songTitle         歌曲标题
      * @param logicalDeleteFlag 逻辑删除标志
@@ -32,7 +35,7 @@ public interface SongCollectionRepository extends JpaRepository<SongCollection, 
     Optional<SongCollection> findBySongTitleAndLogicalDeleteFlag(String songTitle, Boolean logicalDeleteFlag);
 
     /**
-     * 根据 songTitle 查找所有歌曲集合（模糊查询）
+     * 根据歌曲标题查询所有歌曲集合（模糊查询）
      *
      * @param songTitle         歌曲标题
      * @param logicalDeleteFlag 逻辑删除标志

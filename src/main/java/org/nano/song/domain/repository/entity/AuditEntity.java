@@ -10,6 +10,9 @@ import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * 审计用基类
+ */
 @Data
 @EntityListeners(AuditingEntityListener.class)
 @MappedSuperclass

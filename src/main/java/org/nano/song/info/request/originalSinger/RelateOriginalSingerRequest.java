@@ -5,6 +5,9 @@ import org.nano.song.domain.Constant;
 
 import javax.validation.constraints.NotBlank;
 
+/**
+ * 关联原唱歌手请求
+ */
 @Data
 public class RelateOriginalSingerRequest {
     // 歌手姓名
