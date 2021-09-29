@@ -20,6 +20,9 @@ import javax.validation.constraints.NotEmpty;
 import java.io.IOException;
 import java.text.ParseException;
 
+/**
+ * 歌曲相关控制器类
+ */
 @CrossOrigin
 @RequestMapping(Constant.URL_SONG)
 @RestController
@@ -31,10 +34,21 @@ public class SongController {
     @Autowired
     private DeleteSongService deleteSongService;
 
+    /**
+     * 导入歌曲操作
+     *
+     * @param request 导入请求
+     * @return 导入成功信息
+     * @throws ResourceExistException     资源已存在
+     * @throws ResourceNotFoundException  资源未找到
+     * @throws ParseException             格式转换错误
+     * @throws IOException                文件IO错误
+     * @throws BindRelationExistException 绑定关系已存在
+     */
     @PostMapping(Constant.OPERATION_IMPORT)
     @ResponseBody
     public ResponseEntity<?> importSong(@RequestBody @Validated @NotEmpty ImportSongRequest request)
-            throws ResourceNotFoundException, ResourceExistException, ParseException, IOException, BindRelationExistException {
+            throws ResourceExistException, ResourceNotFoundException, ParseException, IOException, BindRelationExistException {
 
         ImportSongBean importSongBean = new ImportSongBean();
         importSongBean.setCoverSingerName("椎名なのは");
@@ -48,6 +62,13 @@ public class SongController {
         return new ResponseEntity<>(Constant.MSG_IMPORT_SUCCESS, HttpStatus.OK);
     }
 
+    /**
+     * 删除歌曲操作
+     *
+     * @param request 删除请求
+     * @return 删除成功信息
+     * @throws ResourceNotFoundException 资源未找到
+     */
     @PostMapping(Constant.OPERATION_DELETE)
     @ResponseBody
     public ResponseEntity<?> deleteSong(@RequestBody @Validated @NotEmpty DeleteSongRequest request)

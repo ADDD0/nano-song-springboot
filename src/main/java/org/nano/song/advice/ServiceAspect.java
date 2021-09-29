@@ -10,6 +10,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 
+/**
+ * 服务层切面类
+ */
 @Aspect
 @Component
 public class ServiceAspect {

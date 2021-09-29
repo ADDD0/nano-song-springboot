@@ -11,6 +11,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 
+/**
+ * DAO层切面类
+ */
 @Aspect
 @Component
 public class RepositoryAspect {

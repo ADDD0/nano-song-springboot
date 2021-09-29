@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.NotEmpty;
 
+/**
+ * 查询歌曲集合相关控制器类
+ */
 @CrossOrigin
 @RequestMapping(Constant.URL_QUERY_SONG_COLLECTION)
 @RestController
@@ -23,6 +26,13 @@ public class QuerySongCollectionController {
     @Autowired
     private QuerySongCollectionService querySongCollectionService;
 
+    /**
+     * 通过歌曲标题查询歌曲集合及相关信息
+     *
+     * @param request 查询请求
+     * @return 歌曲集合及相关信息
+     * @throws ResourceNotFoundException 资源未找到
+     */
     @PostMapping(Constant.QUERY_CONTENT_SONG_TITLE)
     @ResponseBody
     public ResponseEntity<QuerySongCollectionApiResponse> query(@RequestBody @Validated @NotEmpty QuerySongCollectionBySongTitleRequest request)
@@ -35,6 +45,13 @@ public class QuerySongCollectionController {
         return new ResponseEntity<>(querySongCollectionService.querySongCollectionBySongTitle(querySongCollectionBean), HttpStatus.OK);
     }
 
+    /**
+     * 通过歌手姓名查询歌曲集合及相关信息
+     *
+     * @param request 查询请求
+     * @return 歌曲集合及相关信息
+     * @throws ResourceNotFoundException 资源未找到
+     */
     @PostMapping(Constant.QUERY_CONTENT_SINGER_NAME)
     @ResponseBody
     public ResponseEntity<QuerySongCollectionApiResponse> query(@RequestBody @Validated @NotEmpty QuerySongCollectionBySingerNameRequest request)

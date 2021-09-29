@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.NotEmpty;
 
+/**
+ * 歌手相关控制器类
+ */
 @CrossOrigin
 @RequestMapping(Constant.URL_SINGER)
 @RestController
@@ -21,6 +24,13 @@ public class SingerController {
     @Autowired
     private AddSingerService addSingerService;
 
+    /**
+     * 新增歌手操作
+     *
+     * @param request 新增请求
+     * @return 新增成功信息
+     * @throws ResourceExistException 资源已存在
+     */
     @PostMapping(Constant.OPERATION_ADD)
     @ResponseBody
     public ResponseEntity<?> addSinger(@RequestBody @Validated @NotEmpty AddSingerRequest request)

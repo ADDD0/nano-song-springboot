@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.NotEmpty;
 
+/**
+ * 歌曲集合相关控制器类
+ */
 @CrossOrigin
 @RequestMapping(Constant.URL_SONG_COLLECTION)
 @RestController
@@ -28,6 +31,13 @@ public class SongCollectionController {
     @Autowired
     private DeleteSongCollectionService deleteSongCollectionService;
 
+    /**
+     * 新增歌曲集合操作
+     *
+     * @param request 新增请求
+     * @return 新增成功信息
+     * @throws ResourceExistException 资源已存在
+     */
     @PostMapping(Constant.OPERATION_ADD)
     @ResponseBody
     public ResponseEntity<?> addSongCollection(@RequestBody @Validated @NotEmpty AddSongCollectionRequest request)
@@ -43,6 +53,13 @@ public class SongCollectionController {
         return new ResponseEntity<>(Constant.MSG_ADD_SUCCESS, HttpStatus.OK);
     }
 
+    /**
+     * 删除歌曲集合操作
+     *
+     * @param request 删除请求
+     * @return 删除成功信息
+     * @throws ResourceNotFoundException 资源未找到
+     */
     @PostMapping(Constant.OPERATION_DELETE)
     @ResponseBody
     public ResponseEntity<?> deleteSongCollection(@RequestBody @Validated @NotEmpty DeleteSongCollectionRequest request)
